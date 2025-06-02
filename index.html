@@ -1,164 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DICKVENTURE: Who Are You, Daddy?</title>
-  <link rel="icon" href="favicon.ico" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: black;
-      color: #f2f2f2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    .intro, .form-section {
-      text-align: center;
-      max-width: 800px;
-      margin: auto;
-    }
-    .intro h1 {
-      font-size: 2.5rem;
-      color: #e60073;
-    }
-    .prompt-line {
-      margin: 20px 0;
-      font-size: 1.2rem;
-      opacity: 0.8;
-    }
-    .form-field {
-      margin-bottom: 1rem;
-    }
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    input, select {
-      padding: 0.7rem;
-      width: 100%;
-      font-size: 1rem;
-      background: #222;
-      color: #fff;
-      border: 1px solid #444;
-    }
-    button {
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      background: #e60073;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin-top: 1.5rem;
-    }
-    button:hover {
-      background: #b30059;
-    }
-    .gate {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      color: #fff;
-      z-index: 999;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    .hidden { display: none; }
-  </style>
+  <meta charset="UTF-8">
+  <title>DICKVENTURE Locked</title>
+  <script src="https://cdn.jsdelivr.net/npm/staticrypt@3.0.0/staticrypt.min.js"></script>
 </head>
 <body>
-
-  <div class="gate" id="gate">
-    <h1>DADDY'S DOMAIN</h1>
-    <p>Enter the password to get edged.</p>
-    <input type="password" id="pw" placeholder="Password" />
-    <button onclick="checkPW()">Submit</button>
+  <div id="staticrypt-wrapper">
+    <h1>🔒 DICKVENTURE is locked</h1>
+    <p>This page is encrypted. Enter the password to unlock the heat.</p>
+    <input type="password" id="passphrase" placeholder="Enter your password">
+    <button onclick="decrypt()">Unlock Me</button>
   </div>
-
-  <div class="intro hidden" id="main">
-    <h1>"Who Are You, Daddy?"</h1>
-    <p class="prompt-line">You’re standing in front of a two-way mirror. A voice behind you speaks. He sounds amused…</p>
-    <p class="prompt-line"><em>“We’ll begin when you’re ready. You can lie to me if you want—most do. But I’ll know. So…”</em></p>
-  </div>
-
-  <div class="form-section hidden" id="form">
-    <form id="character-form">
-      <div class="form-field">
-        <label for="name">What’s your name, Daddy?</label>
-        <input type="text" id="name" name="name" placeholder="Jaxson Wolfe" />
-      </div>
-      <div class="form-field">
-        <label for="age">How old are you?</label>
-        <input type="number" id="age" name="age" placeholder="34" />
-      </div>
-      <div class="form-field">
-        <label for="ethnicity">What’s your flavor?</label>
-        <input type="text" id="ethnicity" name="ethnicity" placeholder="Latino + Slavic" />
-      </div>
-      <div class="form-field">
-        <label for="body">Build that body:</label>
-        <select id="body" name="body">
-          <option value="jock">Jock</option>
-          <option value="twunk">Twunk</option>
-          <option value="daddy">Thick Daddy</option>
-          <option value="military">Ex-Military</option>
-          <option value="custom">Build it Yourself</option>
-        </select>
-      </div>
-      <div class="form-field">
-        <label for="sexuality">What gets your cock twitching?</label>
-        <select id="sexuality" name="sexuality">
-          <option value="bi">Bi</option>
-          <option value="dom">Dominant Top</option>
-          <option value="switch">Switch</option>
-          <option value="slut">Total Slut</option>
-          <option value="surprise">Surprise Me</option>
-        </select>
-      </div>
-      <div class="form-field">
-        <label for="fetishes">Pick your poisons:</label>
-        <select id="fetishes" name="fetishes" multiple>
-          <option value="degradation">Verbal degradation</option>
-          <option value="edging">Edging / denial</option>
-          <option value="corruption">Str8 boy corruption</option>
-          <option value="scent">Scent, sweat, underwear</option>
-          <option value="humiliation">Power imbalance / humiliation</option>
-          <option value="worship">Body worship</option>
-        </select>
-      </div>
-      <button type="submit">👅 Start Teasing Me</button>
-    </form>
-  </div>
-
-  <audio autoplay loop>
-    <source src="assets/audio/moans-loop.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
-
   <script>
-    function checkPW() {
-      const pw = document.getElementById('pw').value;
-      if (pw === 'getonyourknees') {
-        document.getElementById('gate').classList.add('hidden');
-        document.getElementById('main').classList.remove('hidden');
-        document.getElementById('form').classList.remove('hidden');
-      } else {
-        alert('Wrong password, slut.');
+    async function decrypt() {
+      const pass = document.getElementById('passphrase').value;
+      const encrypted = ;
+      try {
+        const decrypted = await staticrypt.decrypt(encrypted, pass);
+        document.open();
+        document.write(decrypted);
+        document.close();
+      } catch (e) {
+        alert('Wrong password or failed to decrypt, slut.');
       }
     }
-
-    document.getElementById("character-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      alert();
-    });
   </script>
 </body>
 </html>
